@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>textreveal</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        span {
+            font-size: 0px;
+            transition: 1s;
+        }
+    </style>
+    <script>
+        function getQueryParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        window.onload = function() {
+            const paramValue = getQueryParameter('text');
+            if (paramValue) {
+                var s = paramValue;
+                s = s.replace(/[A-Za-z]/g, c => String.fromCharCode(((c <= 'Z' ? 90 : 122) >= (c = c.charCodeAt(0) + 13) ? c : c - 26)));
+                document.getElementById('displayParam').textContent = s;
+            }
+        };
+
+        function display() {
+            document.getElementById("reveal").style.display = "none";
+            document.getElementById("displayParam").style.fontSize = "24px";
+        }
+
+        function rot13() {
+            var s = document.getElementById("s").value;
+            s = s.replace(/[A-Za-z]/g, c => String.fromCharCode(((c <= 'Z' ? 90 : 122) >= (c = c.charCodeAt(0) + 13) ? c : c - 26)));
+            document.getElementById("res").innerText = "https://waffleinhex.github.io/textreveal?text=" + s.replaceAll(" ", "%20");
+        }
+    </script>
+</head>
+<body>
+    <center>
+        <h1>textreveal</h1>
+        <span id="displayParam">make your own one:<br>instead of https://waffleinhex.github.io/revealtext<br>do https://waffleinhex.github.io/revealtext?text=[text you would like]</span>
+        <br>
+        <button id="reveal" onclick="display()">REVEAL!</button>
+        <hr>
+        <fieldset>
+            <legend>Make your own one</legend>
+            <p>text to be revealed: <input placeholder="whats 9 + 10?" id="s" onchange="rot13()"></p>
+            <p>url: <a id="res">?</a></p>
+        </fieldset>
+    </center>
+</body>
+</html>

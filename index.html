@@ -37,6 +37,9 @@
             var s = document.getElementById("s").value;
             s = s.replace(/[A-Za-z]/g, c => String.fromCharCode(((c <= 'Z' ? 90 : 122) >= (c = c.charCodeAt(0) + 13) ? c : c - 26)));
             document.getElementById("res").innerText = "https://waffleinhex.github.io/textreveal?text=" + s.replaceAll(" ", "%20");
+            document.getElementById("displayParam").style.fontSize = "0px";
+            document.getElementById('displayParam').textContent = s.replace(/[A-Za-z]/g, c => String.fromCharCode(((c <= 'Z' ? 90 : 122) >= (c = c.charCodeAt(0) + 13) ? c : c - 26)));
+            document.getElementById("displayParam").style.fontSize = "24px";
         }
     </script>
 </head>
